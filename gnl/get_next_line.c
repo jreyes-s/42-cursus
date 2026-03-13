@@ -6,7 +6,7 @@
 /*   By: jreyes-s <jreyes-s@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 20:01:33 by jreyes-s          #+#    #+#             */
-/*   Updated: 2026/03/13 12:31:54 by jreyes-s         ###   ########.fr       */
+/*   Updated: 2026/03/13 12:32:54 by jreyes-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,7 @@ char	*get_next_line(int fd)
 	char		*line;
 
 	if (!ft_validate_input(fd))
-		;
-	return (NULL);
+		return (NULL);
 	stash = ft_read_and_accumulate(fd, stash);
 	if (!stash || stash[0] == '\0')
 		return (free(stash), stash = NULL, NULL);
