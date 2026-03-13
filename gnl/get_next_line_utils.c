@@ -6,7 +6,7 @@
 /*   By: jreyes-s <jreyes-s@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 16:22:04 by jreyes-s          #+#    #+#             */
-/*   Updated: 2026/03/13 12:18:16 by jreyes-s         ###   ########.fr       */
+/*   Updated: 2026/03/13 12:45:34 by jreyes-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,14 +103,14 @@ char	*ft_extract_line(char *stash)
 	if (!line)
 		return (NULL);
 	i = 0;
-	while (stash[i] && stash[i] != '\n')
+	while (i < len && stash[i] && stash[i] != '\n')
 	{
 		line[i] = stash[i];
 		i++;
 	}
-	if (stash[i] == '\n')
-		line[i] = '\n';
-	line[++i] = '\0';
+	if (i < len && stash[i] == '\n')
+		line[i++] = '\n';
+	line[i] = '\0';
 	return (line);
 }
 
