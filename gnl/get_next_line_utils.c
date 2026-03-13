@@ -6,7 +6,7 @@
 /*   By: jreyes-s <jreyes-s@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 16:22:04 by jreyes-s          #+#    #+#             */
-/*   Updated: 2026/02/21 03:00:35 by jreyes-s         ###   ########.fr       */
+/*   Updated: 2026/03/13 11:55:34 by jreyes-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,38 +23,51 @@ int	ft_strlen(char *str)
 		i++;
 	return (i);
 }
-"Hola mundo\nAdios mundo\n"
 
-char	*ft_strjoin(char *stash, char *buf)
+static void	copy_stash(char *stash, char *res)
 {
-	char	*res;
-	char	*tmp;
-	int		i;
-	int		j;
+	int	i;
 
-	tmp = stash;
-	if (!stash)
-		stash = "";
-	if (!buf)
-		return (free(tmp), NULL);
-	res = malloc(sizeof(char) * (ft_strlen(stash) + ft_strlen(buf) + 1));
-	if (!res)
-		return (free(tmp), NULL);
 	i = 0;
 	while (stash[i])
 	{
 		res[i] = stash[i];
 		i++;
 	}
-	if (tmp)
-		free(tmp);
+}
+
+static void	copy_buf(char *buf, char *res, int offset)
+{
+	int	j;
+
 	j = 0;
 	while (buf[j])
 	{
-		res[i + j] = buf[j];
+		res[offset + j] = buf[j];
 		j++;
 	}
-	res[i + j] = '\0';
+	res[offset + j] = '\0';
+}
+
+char	*ft_strjoin(char *stash, char *buf)
+{
+	char	*res;
+	char	*tmp;
+	int		len;
+
+	tmp = stash;
+	if (!stash)
+		stash = "";
+	if (!buf)
+		return (free(tmp), NULL);
+	len = ft_strlen(stash);
+	res = malloc(sizeof(char) * (len + ft_strlen(buf) + 1));
+	if (!res)
+		return (free(tmp), NULL);
+	copy_stash(stash, res);
+	if (tmp)
+		free(tmp);
+	copy_buf(buf, res, len);
 	return (res);
 }
 
