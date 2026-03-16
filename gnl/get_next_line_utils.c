@@ -6,7 +6,7 @@
 /*   By: jreyes-s <jreyes-s@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 16:22:04 by jreyes-s          #+#    #+#             */
-/*   Updated: 2026/03/16 20:49:53 by jreyes-s         ###   ########.fr       */
+/*   Updated: 2026/03/16 20:51:09 by jreyes-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ char	*ft_update_stash(char *stash)
 	char	*new_stash;
 
 	if (!stash || stash[0] == '\0')
-		return (NULL);
+		return (free(stash), NULL);
 	i = 0;
 	while (stash[i])
 	{
