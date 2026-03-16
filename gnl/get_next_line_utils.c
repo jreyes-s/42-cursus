@@ -6,7 +6,7 @@
 /*   By: jreyes-s <jreyes-s@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 16:22:04 by jreyes-s          #+#    #+#             */
-/*   Updated: 2026/03/16 20:45:39 by jreyes-s         ###   ########.fr       */
+/*   Updated: 2026/03/16 20:48:54 by jreyes-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,19 +88,6 @@ int	ft_has_newline(char *stash)
 	return (0);
 }
 
-// Aqui falta terminar esta funcion para luego implementarla dentro de ft_extract_line
-static char	*copy_line(char *stash, char *line)
-{
-	int	i;
-
-	i = 0;
-	while (stash[i] && stash[i] != '\n')
-	{
-		line[i] = stash[i];
-		i++;
-	}
-}
-
 char	*ft_extract_line(char *stash)
 {
 	char	*line;
@@ -115,7 +102,7 @@ char	*ft_extract_line(char *stash)
 		i++;
 	line = malloc(sizeof(char) * (i + 1));
 	if (!line)
-		return (NULL);
+		return (free(stash), NULL);
 	i = 0;
 	while (stash[i] && stash[i] != '\n')
 	{
