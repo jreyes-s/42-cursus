@@ -15,7 +15,7 @@
 int	ft_putnbr_unsigned(unsigned int n)
 {
 	unsigned long	nbr;
-	int		count;
+	int				count;
 
 	nbr = (unsigned long)n;
 	count = 0;
