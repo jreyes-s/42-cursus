@@ -6,14 +6,14 @@
 /*   By: jreyes-s <jreyes-s@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/29 16:48:22 by jreyes-s          #+#    #+#             */
-/*   Updated: 2026/03/29 16:48:55 by jreyes-s         ###   ########.fr       */
+/*   Updated: 2026/03/29 21:14:02 by jreyes-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_safe_add(int *count, int ret)
+int	ft_safe_add(int count, int ret)
 {
 	if (ret == -1)
 		return (-1);
-	*count += ret;
+	count += ret;
 	return (0);
 }
