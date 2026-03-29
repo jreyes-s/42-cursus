@@ -6,7 +6,7 @@
 /*   By: jreyes-s <jreyes-s@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 23:17:52 by jreyes-s          #+#    #+#             */
-/*   Updated: 2026/03/16 18:19:46 by jreyes-s         ###   ########.fr       */
+/*   Updated: 2026/03/29 13:54:18 by jreyes-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	ft_putptr(void *ptr)
 	int				count;
 
 	if (!ptr)
-		return (ft_putstr("(nil)"));
+		return (ft_putstr("0x0"));
 	count = 0;
 	if (safe_add(&count, ft_putstr("0x")) == -1)
 		return (-1);
