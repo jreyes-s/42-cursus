@@ -6,7 +6,7 @@
 /*   By: jreyes-s <jreyes-s@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 16:22:04 by jreyes-s          #+#    #+#             */
-/*   Updated: 2026/03/17 16:56:34 by jreyes-s         ###   ########.fr       */
+/*   Updated: 2026/03/29 19:08:47 by jreyes-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,37 +24,13 @@ static int	ft_strlen(char *str)
 	return (i);
 }
 
-static void	copy_stash(char *stash, char *res)
-{
-	int	i;
-
-	i = 0;
-	while (stash[i])
-	{
-		res[i] = stash[i];
-		i++;
-	}
-	res[i] = '\0';
-}
-
-static void	copy_buf(char *buf, char *res, int offset)
-{
-	int	j;
-
-	j = 0;
-	while (buf[j])
-	{
-		res[offset + j] = buf[j];
-		j++;
-	}
-	res[offset + j] = '\0';
-}
-
 char	*ft_strjoin(char *stash, char *buf)
 {
 	char	*res;
 	char	*tmp;
 	int		len;
+	int		i;
+	int		j;
 
 	tmp = stash;
 	if (!stash)
@@ -65,10 +41,15 @@ char	*ft_strjoin(char *stash, char *buf)
 	res = malloc(sizeof(char) * (len + ft_strlen(buf) + 1));
 	if (!res)
 		return (free(tmp), NULL);
-	copy_stash(stash, res);
+	i = -1;
+	while (stash[++i])
+		res[i] = stash[i];
 	if (tmp)
 		free(tmp);
-	copy_buf(buf, res, len);
+	j = -1;
+	while (buf[++j])
+		res[len + j] = buf[j];
+	res[len + j] = '\0';
 	return (res);
 }
 
@@ -88,10 +69,22 @@ int	ft_has_newline(char *stash)
 	return (0);
 }
 
-static char	*extract_line_helper(char *stash, char *line)
+char	*ft_extract_line(char *stash)
 {
-	int	j;
+	char	*line;
+	int		i;
+	int		j;
 
+	i = 0;
+	if (!stash || stash[0] == '\0')
+		return (NULL);
+	while (stash[i] && stash[i] != '\n')
+		i++;
+	if (stash[i] == '\n')
+		i++;
+	line = malloc(sizeof(char) * (i + 1));
+	if (!line)
+		return (NULL);
 	j = 0;
 	while (stash[j] && stash[j] != '\n')
 	{
@@ -104,30 +97,10 @@ static char	*extract_line_helper(char *stash, char *line)
 	return (line);
 }
 
-char	*ft_extract_line(char *stash)
-{
-	char	*line;
-	int		i;
-
-	i = 0;
-	if (!stash || stash[0] == '\0')
-		return (free(stash), NULL);
-	while (stash[i] && stash[i] != '\n')
-		i++;
-	if (stash[i] == '\n')
-		i++;
-	line = malloc(sizeof(char) * (i + 1));
-	if (!line)
-		return (free(stash), NULL);
-	extract_line_helper(stash, line);
-	return (line);
-}
-
 char	*ft_update_stash(char *stash)
 {
 	int		i;
-	int		start;
-	char	*new_stash;
+	int		j;
 
 	if (!stash || stash[0] == '\0')
 		return (free(stash), NULL);
@@ -136,15 +109,14 @@ char	*ft_update_stash(char *stash)
 	{
 		if (stash[i] == '\n')
 		{
-			start = ++i;
-			new_stash = malloc(sizeof(char) * (ft_strlen(stash) - start + 1));
-			if (!new_stash)
+			i++;
+			if (stash[i] == '\0')
 				return (free(stash), NULL);
-			start = 0;
+			j = 0;
 			while (stash[i])
-				new_stash[start++] = stash[i++];
-			new_stash[start] = '\0';
-			return (free(stash), new_stash);
+				stash[j++] = stash[i++];
+			stash[j] = '\0';
+			return (stash);
 		}
 		i++;
 	}

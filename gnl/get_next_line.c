@@ -6,7 +6,7 @@
 /*   By: jreyes-s <jreyes-s@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 20:01:33 by jreyes-s          #+#    #+#             */
-/*   Updated: 2026/03/16 20:54:47 by jreyes-s         ###   ########.fr       */
+/*   Updated: 2026/03/29 19:15:09 by jreyes-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,13 @@ char	*get_next_line(int fd)
 	char		*line;
 
 	if (!ft_validate_input(fd))
-		return (NULL);
+		return (free(stash), stash = NULL, NULL);
 	stash = ft_read_and_accumulate(fd, stash);
 	if (!stash || stash[0] == '\0')
 		return (free(stash), stash = NULL, NULL);
 	line = ft_extract_line(stash);
+	if (!line)
+		return (free(stash), stash = NULL, NULL);
 	stash = ft_update_stash(stash);
 	return (line);
 }
