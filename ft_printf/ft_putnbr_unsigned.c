@@ -6,7 +6,7 @@
 /*   By: jreyes-s <jreyes-s@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 21:28:32 by jreyes-s          #+#    #+#             */
-/*   Updated: 2026/03/16 20:42:36 by jreyes-s         ###   ########.fr       */
+/*   Updated: 2026/03/29 16:49:53 by jreyes-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ int	ft_putnbr_unsigned(unsigned int n)
 	nbr = (unsigned long)n;
 	count = 0;
 	if (nbr >= 10)
-		if (safe_add(&count, ft_putnbr_unsigned(nbr / 10)) == -1)
+		if (ft_safe_add(&count, ft_putnbr_unsigned(nbr / 10)) == -1)
 			return (-1);
-	if (safe_add(&count, ft_putchar((nbr % 10) + '0')) == -1)
+	if (ft_safe_add(&count, ft_putchar((nbr % 10) + '0')) == -1)
 		return (-1);
 	return (count);
 }

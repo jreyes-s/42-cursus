@@ -6,7 +6,7 @@
 /*   By: jreyes-s <jreyes-s@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 19:57:45 by jreyes-s          #+#    #+#             */
-/*   Updated: 2026/03/29 13:52:31 by jreyes-s         ###   ########.fr       */
+/*   Updated: 2026/03/29 16:49:20 by jreyes-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,11 @@ int	ft_printf(char const *format, ...)
 		if (format[i] == '%' && format[i + 1])
 		{
 			i++;
-			if (safe_add(&count, dispatch(format[i], &args)) == -1)
+			if (ft_safe_add(&count, dispatch(format[i], &args)) == -1)
 				return (cleanup_error(&args));
 		}
 		else
-			if (safe_add(&count, ft_putchar(format[i])) == -1)
+			if (ft_safe_add(&count, ft_putchar(format[i])) == -1)
 				return (cleanup_error(&args));
 		i++;
 	}

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jreyes-s <jreyes-s@student.42madrid.com>   +#+  +:+       +#+         #
+#    By: jreyes-s <jreyes-s@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/09 23:46:21 by jreyes-s          #+#    #+#              #
-#    Updated: 2026/02/09 23:46:27 by jreyes-s         ###   ########.fr        #
+#    Updated: 2026/03/29 16:53:20 by jreyes-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRCS = ft_printf.c \
        ft_putnbr.c \
        ft_putnbr_unsigned.c \
        ft_puthex.c \
+	ft_safe_add.c \
        ft_putptr.c
 
 OBJS = $(SRCS:.c=.o)

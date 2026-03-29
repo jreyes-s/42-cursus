@@ -6,7 +6,7 @@
 /*   By: jreyes-s <jreyes-s@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 22:06:56 by jreyes-s          #+#    #+#             */
-/*   Updated: 2026/03/16 20:42:31 by jreyes-s         ###   ########.fr       */
+/*   Updated: 2026/03/29 16:50:00 by jreyes-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int	ft_puthex(unsigned int n, int uppercase)
 	else
 		hex_digits = "0123456789abcdef";
 	if (nbr >= 16)
-		if (safe_add(&count, ft_puthex(nbr / 16, uppercase)) == -1)
+		if (ft_safe_add(&count, ft_puthex(nbr / 16, uppercase)) == -1)
 			return (-1);
-	if (safe_add(&count, ft_putchar(hex_digits[nbr % 16])) == -1)
+	if (ft_safe_add(&count, ft_putchar(hex_digits[nbr % 16])) == -1)
 		return (-1);
 	return (count);
 }
