@@ -6,13 +6,13 @@
 /*   By: jreyes-s <jreyes-s@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 16:22:04 by jreyes-s          #+#    #+#             */
-/*   Updated: 2026/03/29 19:08:47 by jreyes-s         ###   ########.fr       */
+/*   Updated: 2026/03/29 23:52:30 by jreyes-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static int	ft_strlen(char *str)
+static int	ft_strlen(char const *str)
 {
 	int	i;
 
@@ -24,32 +24,31 @@ static int	ft_strlen(char *str)
 	return (i);
 }
 
-char	*ft_strjoin(char *stash, char *buf)
+char	*ft_strjoin(char *stash, char const *buf)
 {
 	char	*res;
-	char	*tmp;
-	int		len;
 	int		i;
 	int		j;
 
-	tmp = stash;
-	if (!stash)
-		stash = "";
 	if (!buf)
-		return (free(tmp), NULL);
-	len = ft_strlen(stash);
-	res = malloc(sizeof(char) * (len + ft_strlen(buf) + 1));
+		return (free(stash), NULL);
+	res = malloc(sizeof(char) * (ft_strlen(stash) + ft_strlen(buf) + 1));
 	if (!res)
-		return (free(tmp), NULL);
-	i = -1;
-	while (stash[++i])
+		return (free(stash), NULL);
+	i = 0;
+	while (stash && stash[i])
+	{
 		res[i] = stash[i];
-	if (tmp)
-		free(tmp);
-	j = -1;
-	while (buf[++j])
-		res[len + j] = buf[j];
-	res[len + j] = '\0';
+		i++;
+	}
+	j = 0;
+	while (buf && buf[j])
+	{
+		res[i + j] = buf[j];
+		j++;
+	}
+	res[i + j] = '\0';
+	free(stash);
 	return (res);
 }
 
@@ -99,8 +98,8 @@ char	*ft_extract_line(char *stash)
 
 char	*ft_update_stash(char *stash)
 {
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 
 	if (!stash || stash[0] == '\0')
 		return (free(stash), NULL);

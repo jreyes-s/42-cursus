@@ -6,7 +6,7 @@
 /*   By: jreyes-s <jreyes-s@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 16:21:49 by jreyes-s          #+#    #+#             */
-/*   Updated: 2026/03/29 18:48:09 by jreyes-s         ###   ########.fr       */
+/*   Updated: 2026/03/29 23:53:32 by jreyes-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # endif
 
 char	*get_next_line(int fd);
-char	*ft_strjoin(char *stash, char *buf);
+char	*ft_strjoin(char *stash, char const *buf);
 int		ft_has_newline(char *stash);
 char	*ft_extract_line(char *stash);
 char	*ft_update_stash(char *stash);
