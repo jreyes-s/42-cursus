@@ -6,7 +6,7 @@
 /*   By: jreyes-s <jreyes-s@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 19:51:22 by jreyes-s          #+#    #+#             */
-/*   Updated: 2026/03/29 16:49:02 by jreyes-s         ###   ########.fr       */
+/*   Updated: 2026/03/29 18:13:49 by jreyes-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,4 @@ int			ft_putnbr_unsigned(unsigned int n);
 int			ft_puthex(unsigned int n, int uppercase);
 int			ft_putptr(void *ptr);
 int			ft_safe_add(int *count, int ret);
-
 #endif
