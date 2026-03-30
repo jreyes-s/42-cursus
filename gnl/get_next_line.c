@@ -6,13 +6,29 @@
 /*   By: jreyes-s <jreyes-s@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 20:01:33 by jreyes-s          #+#    #+#             */
-/*   Updated: 2026/03/31 00:24:17 by jreyes-s         ###   ########.fr       */
+/*   Updated: 2026/03/31 00:26:30 by jreyes-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static int	ft_validate_input(int fd)
+static size_t	ft_has_newline(char *stash)
+{
+	size_t	i;
+
+	if (!stash)
+		return (0);
+	i = 0;
+	while (stash[i])
+	{
+		if (stash[i] == '\n')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+static size_t	ft_validate_input(int fd)
 {
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
