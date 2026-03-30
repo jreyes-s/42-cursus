@@ -6,7 +6,7 @@
 /*   By: jreyes-s <jreyes-s@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 16:22:04 by jreyes-s          #+#    #+#             */
-/*   Updated: 2026/03/29 23:52:30 by jreyes-s         ###   ########.fr       */
+/*   Updated: 2026/03/30 23:16:15 by jreyes-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ static int	ft_strlen(char const *str)
 	return (i);
 }
 
-char	*ft_strjoin(char *stash, char const *buf)
+char	*ft_strjoin(char *stash, char *buf)
 {
 	char	*res;
 	int		i;
 	int		j;
 
 	if (!buf)
-		return (free(stash), NULL);
+		return (NULL);
 	res = malloc(sizeof(char) * (ft_strlen(stash) + ft_strlen(buf) + 1));
 	if (!res)
 		return (free(stash), NULL);
@@ -119,5 +119,6 @@ char	*ft_update_stash(char *stash)
 		}
 		i++;
 	}
-	return (free(stash), NULL);
+	free(stash);
+	return (NULL);
 }

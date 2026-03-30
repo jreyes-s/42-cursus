@@ -6,7 +6,7 @@
 /*   By: jreyes-s <jreyes-s@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 20:01:33 by jreyes-s          #+#    #+#             */
-/*   Updated: 2026/03/30 21:28:04 by jreyes-s         ###   ########.fr       */
+/*   Updated: 2026/03/30 21:55:30 by jreyes-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	ft_validate_input(int fd)
 
 static char	*ft_read_and_accumulate(int fd, char *stash)
 {
-	char const	*buf;
+	char	*buf;
 	ssize_t	n;
 
 	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
@@ -33,6 +33,9 @@ static char	*ft_read_and_accumulate(int fd, char *stash)
 		n = read(fd, buf, BUFFER_SIZE);
 		if (n < 0)
 			return (free(buf), free(stash), NULL);
+		if (n == 0)
+			break ;
+		buf[n] = '\0';
 		stash = ft_strjoin(stash, buf);
 		if (!stash)
 			return (free(buf), NULL);
