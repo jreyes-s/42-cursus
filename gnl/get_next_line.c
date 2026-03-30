@@ -6,7 +6,7 @@
 /*   By: jreyes-s <jreyes-s@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 20:01:33 by jreyes-s          #+#    #+#             */
-/*   Updated: 2026/03/30 23:58:38 by jreyes-s         ###   ########.fr       */
+/*   Updated: 2026/03/31 00:09:40 by jreyes-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ char	*ft_read_and_stash(int fd, char *stash)
 
 	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
-		return (free(stash), NULL);
+		return (free(stash), stash = NULL, NULL);
 	bytes_read = 1;
 	while (!ft_has_newline(stash) && bytes_read > 0)
 	{
 		bytes_read = read(fd, buf, BUFFER_SIZE);
 		if (bytes_read < 0)
-			return (free(buf), free(stash), NULL);
+			return (free(buf), free(stash), stash = NULL, NULL);
 		buf[bytes_read] = '\0';
 		stash = ft_strjoin(stash, buf);
 		if (!stash)
