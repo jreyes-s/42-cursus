@@ -6,15 +6,15 @@
 /*   By: jreyes-s <jreyes-s@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 16:22:04 by jreyes-s          #+#    #+#             */
-/*   Updated: 2026/03/30 23:16:15 by jreyes-s         ###   ########.fr       */
+/*   Updated: 2026/03/30 23:39:43 by jreyes-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static int	ft_strlen(char const *str)
+static size_t	ft_strlen(char const *str)
 {
-	int	i;
+	size_t	i;
 
 	if (!str)
 		return (0);
@@ -27,8 +27,8 @@ static int	ft_strlen(char const *str)
 char	*ft_strjoin(char *stash, char *buf)
 {
 	char	*res;
-	int		i;
-	int		j;
+	size_t	i;
+	size_t	j;
 
 	if (!buf)
 		return (NULL);
@@ -54,7 +54,7 @@ char	*ft_strjoin(char *stash, char *buf)
 
 int	ft_has_newline(char *stash)
 {
-	int	i;
+	size_t	i;
 
 	if (!stash)
 		return (0);
@@ -71,8 +71,8 @@ int	ft_has_newline(char *stash)
 char	*ft_extract_line(char *stash)
 {
 	char	*line;
-	int		i;
-	int		j;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
 	if (!stash || stash[0] == '\0')
@@ -98,8 +98,8 @@ char	*ft_extract_line(char *stash)
 
 char	*ft_update_stash(char *stash)
 {
-	int	i;
-	int	j;
+	size_t	i;
+	size_t	j;
 
 	if (!stash || stash[0] == '\0')
 		return (free(stash), NULL);
