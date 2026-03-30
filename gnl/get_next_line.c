@@ -6,7 +6,7 @@
 /*   By: jreyes-s <jreyes-s@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 20:01:33 by jreyes-s          #+#    #+#             */
-/*   Updated: 2026/03/30 23:38:22 by jreyes-s         ###   ########.fr       */
+/*   Updated: 2026/03/30 23:58:38 by jreyes-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	ft_validate_input(int fd)
 {
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
 	return (1);
 }
@@ -26,13 +26,13 @@ char	*ft_read_and_stash(int fd, char *stash)
 
 	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
-		return (NULL);
+		return (free(stash), NULL);
 	bytes_read = 1;
 	while (!ft_has_newline(stash) && bytes_read > 0)
 	{
 		bytes_read = read(fd, buf, BUFFER_SIZE);
 		if (bytes_read < 0)
-			return (free(buf), NULL);
+			return (free(buf), free(stash), NULL);
 		buf[bytes_read] = '\0';
 		stash = ft_strjoin(stash, buf);
 		if (!stash)
@@ -53,6 +53,8 @@ char	*get_next_line(int fd)
 	if (!stash)
 		return (NULL);
 	line = ft_extract_line(stash);
+	if (!line)
+		return (free(stash), stash = NULL, NULL);
 	stash = ft_update_stash(stash);
 	return (line);
 }
