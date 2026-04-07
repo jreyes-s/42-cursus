@@ -1,0 +1,99 @@
+PUSH SWAP - PLAN DE TRABAJO
+
+Objetivo final:
+- Ordenar stack A con el menor numero de instrucciones posibles.
+- Manejar errores segun el subject (input invalido, duplicados, overflow).
+- Entrega estable, con pruebas reproducibles.
+
+--------------------------------------------------
+FASE 1 - BASE SOLIDA (22 marzo)
+--------------------------------------------------
+
+1) Estructura y parsing
+[ ] Definir estructuras de nodos/stack y helpers comunes.
+[ ] Aceptar formato: ./push_swap 3 2 1
+[ ] Aceptar formato: ./push_swap "3 2 1"
+[ ] Validar enteros (signo, digitos, overflow int).
+[ ] Detectar duplicados.
+[ ] Error handling: imprimir "Error" + newline en stderr.
+[ ] Liberar memoria en errores.
+
+2) Operaciones obligatorias
+[ ] sa
+[ ] sb
+[ ] ss
+[ ] pa
+[ ] pb
+[ ] ra
+[ ] rb
+[ ] rr
+[ ] rra
+[ ] rrb
+[ ] rrr
+
+3) Criterio de cierre Fase 1
+[ ] Todas las operaciones funcionan aisladas.
+[ ] Parsing robusto en inputs validos e invalidos.
+[ ] Sin leaks en casos normales y de error (valgrind).
+
+--------------------------------------------------
+FASE 2 - ALGORITMOS (5 abril)
+--------------------------------------------------
+
+4) Casos pequenos
+[ ] sort_2
+[ ] sort_3
+[ ] sort_4
+[ ] sort_5
+[ ] Si ya esta ordenado: no imprimir nada.
+
+5) Caso general
+[ ] Implementar indexado/ranking de valores.
+[ ] Implementar radix base 2 sobre indices.
+[ ] Mantener complejidad y numero de movimientos razonables.
+
+6) Criterio de cierre Fase 2
+[ ] 100 numeros aleatorios: dentro del limite esperado.
+[ ] 500 numeros aleatorios: dentro del limite esperado.
+[ ] Comportamiento consistente en varias seeds.
+
+--------------------------------------------------
+FASE 3 - QA Y ENTREGA (10 abril)
+--------------------------------------------------
+
+7) Pruebas funcionales
+[ ] Casos minimos: vacio, 1 elemento, 2 elementos.
+[ ] Casos invalidos: letras, overflow, duplicados, signos invalidos.
+[ ] Casos mixtos: negativos + positivos.
+
+8) Pruebas de rendimiento
+[ ] Medir promedio de movimientos en lotes aleatorios.
+[ ] Detectar regresiones al tocar algoritmos.
+
+9) Calidad de entrega
+[ ] Makefile limpio: all, clean, fclean, re.
+[ ] Compila con -Wall -Wextra -Werror.
+[ ] Sin fugas de memoria.
+[ ] Codigo norminette-friendly.
+[ ] README con:
+	- estrategia de algoritmo
+	- limites observados
+	- como compilar y ejecutar
+
+--------------------------------------------------
+COMANDOS RAPIDOS DE TEST
+--------------------------------------------------
+
+# Basico
+./push_swap 2 1
+./push_swap 3 2 1
+./push_swap "3 2 1"
+
+# Error handling
+./push_swap 1 2 a
+./push_swap 1 1
+./push_swap 2147483648
+
+# Conteo de movimientos
+ARG=$(shuf -i 0-99 -n 100 | tr '\n' ' ')
+./push_swap $ARG | wc -l
